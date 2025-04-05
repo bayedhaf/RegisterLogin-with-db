@@ -49,4 +49,38 @@ router.post('/register',(req,res)=>{
         })
         .catch(err=>console.log(err));
 })
+//@type post
+//@route /api/auth/login
+//@desc just for testing
+//@access public
+router.post('/login',(req,res)=>{
+    const email=req.body.email;
+    const password=req.body.password;
+      Person.findOne({email})
+             .then(person=>{
+                if (!person) {
+                    return res.status(404)
+                       .json({emailerror:'This user is not found.Please try as Regestiry...'})
+                    
+                } 
+                //login test
+                bcrypt.compare(password,person.password)
+                        .then(isCorrect=>{
+                            if(isCorrect){
+                                res.json({sucess:'Login is succeully'})
+                            }
+                            else{
+                                res.status(400).json({passworderror:'Password is not correct'})
+                            }
+                        })
+
+                        .catch(err=>console.log(err));
+                  
+             })
+             .catch(err=>console.log(err))
+})
+
+
+
+
 module.exports=router;
