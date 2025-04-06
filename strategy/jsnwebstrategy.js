@@ -1,6 +1,6 @@
 const JwtStrategy=require('passport-jwt').JwtStrategy;
 const ExtractJwt=require('passport-jwt').ExtractJwt;
-const mongoose=require('mangoose');
+const mongoose=mangoose.model('myPerson')
 const Person=require('../models/Person')
 
 

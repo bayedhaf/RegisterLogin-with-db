@@ -68,6 +68,8 @@ router.post('/login',(req,res)=>{
                         .then(isCorrect=>{
                             if(isCorrect){
                                 res.json({sucess:'Login is succeully'})
+                            //use payload adn create token for user
+                            
                             }
                             else{
                                 res.status(400).json({passworderror:'Password is not correct'})
